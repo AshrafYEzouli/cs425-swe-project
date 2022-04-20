@@ -1,6 +1,7 @@
 package cs425.project.moviemail.model;
 
 import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -27,6 +28,7 @@ public class Movie {
     private int genre; //Genre.Action.value;
 
     @Column(name="released_date")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate releasedDate;
 
     @Column(name="price", nullable = false)
@@ -34,4 +36,52 @@ public class Movie {
 
     @ManyToMany(mappedBy="movies")
     private List<Record> records = new ArrayList<>();
+
+    public Long getMovieId() {
+        return movieId;
+    }
+
+    public void setMovieId(Long movieId) {
+        this.movieId = movieId;
+    }
+
+    public String getMovieName() {
+        return movieName;
+    }
+
+    public void setMovieName(String movieName) {
+        this.movieName = movieName;
+    }
+
+    public int getGenre() {
+        return genre;
+    }
+
+    public void setGenre(int genre) {
+        this.genre = genre;
+    }
+
+    public LocalDate getReleasedDate() {
+        return releasedDate;
+    }
+
+    public void setReleasedDate(LocalDate releasedDate) {
+        this.releasedDate = releasedDate;
+    }
+
+    public double getRentalPrice() {
+        return rentalPrice;
+    }
+
+    public void setRentalPrice(double rentalPrice) {
+        this.rentalPrice = rentalPrice;
+    }
+
+    public List<Record> getRecords() {
+        return records;
+    }
+
+    public void setRecords(List<Record> records) {
+        this.records = records;
+    }
 }

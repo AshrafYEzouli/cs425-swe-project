@@ -1,12 +1,15 @@
 package cs425.project.moviemail.controller;
 
 import cs425.project.moviemail.model.Admin;
+import cs425.project.moviemail.model.Movie;
 import cs425.project.moviemail.service.AdminService;
+import cs425.project.moviemail.service.MovieService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -15,12 +18,11 @@ import java.util.List;
 @RequestMapping(value = {"/admin"})
 public class AdminController {
 
+    @Autowired
     private AdminService adminService;
 
-
-    public AdminController(AdminService adminService) {
-        this.adminService = adminService;
-    }
+    @Autowired
+    private MovieService movieService;
 
     @GetMapping(value = {"/list"})
     public ModelAndView listAdmins() {
@@ -38,7 +40,7 @@ public class AdminController {
     }
     @PostMapping(value = {"/new"})
     public String registerNewAdmin(@Valid @ModelAttribute("admin") Admin admin,
-                                     BindingResult bindingResult, Model model) {
+                                   BindingResult bindingResult, Model model) {
 
         adminService.save(admin);
         return "redirect:/admin/list";
@@ -56,7 +58,7 @@ public class AdminController {
 
     @PostMapping(value = {"/update"})
     public String updateAdmin(@Valid @ModelAttribute("admin") Admin admin,
-                                  BindingResult bindingResult, Model model) {
+                              BindingResult bindingResult, Model model) {
         if(bindingResult.hasErrors()) {
             model.addAttribute("admin", admin);
             model.addAttribute("errors", bindingResult.getAllErrors());
@@ -73,4 +75,71 @@ public class AdminController {
     }
 
 
+    //added by SY
+    @GetMapping(value = {"/movies"})
+    public ModelAndView getAllMovies() {
+        var modelAndView = new ModelAndView();
+        modelAndView.addObject("movies", movieService.getAllMovie());
+        modelAndView.setViewName("secured/admin/movieList");
+        return modelAndView;
+
+    }
+
+    @GetMapping(value = "/movies/addmovies")
+    public ModelAndView getMovieForm() {
+        var modelAndView = new ModelAndView();
+        modelAndView.addObject("movie",new Movie());
+        modelAndView.setViewName("secured/admin/movieNew");
+        return modelAndView;
+    }
+
+    @PostMapping(value = "/movies/addmovies")
+    public String addMovie(@ModelAttribute("movie") Movie movie) {
+        movieService.addNewMovie(movie);
+        return "redirect:/admin/movies";
+    }
+
+
+
+    //added for Edit movie
+    @GetMapping(value = {"/movies/edit/{movieId}"})
+    public String editMovie(@PathVariable Long movieId, Model model) {
+        var movie = movieService.getMovieById(movieId);
+        if(movie != null) {
+            model.addAttribute("movie", movie);
+            return "secured/admin/movieEdit";
+        }
+        return "redirect:/admin/movies";
+    }
+
+    @PostMapping(value = {"/movies/update"})
+    public String updateMovie(@Valid @ModelAttribute("movie") Movie movie,
+                              BindingResult bindingResult, Model model) {
+        if(bindingResult.hasErrors()) {
+            model.addAttribute("movie", movie);
+            model.addAttribute("errors", bindingResult.getAllErrors());
+            return "secured/admin/movieEdit";
+        }
+        movieService.addNewMovie(movie);
+        return "redirect:/admin/movies";
+    }
+
+    //added for delete movie
+    @GetMapping("/movies/delete/{movieId}")
+    public String deleteMovie(@PathVariable Long movieId) {
+        Movie movie = movieService.getMovieById(movieId);
+        movieService.deleteMovieById(movieId);
+        return "redirect:/admin/movies";
+
+    }
+
+//    //added by SY
+//    @GetMapping(value = {"/movies"})
+//    public ModelAndView getAllMovies() {
+//        var modelAndView = new ModelAndView();
+//        modelAndView.addObject("movies", movieService.getAllMovie());
+//        modelAndView.setViewName("movie");
+//        return modelAndView;
+//
+//    }
 }
