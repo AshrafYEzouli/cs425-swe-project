@@ -9,7 +9,8 @@
     <div style="width: 100%;">
         <h3 style="display: inline;">Shopping cart</h3>
         <span style="float: right;">
-                    <a class="btn btn-outline-primary btn-lg" href="/customer/checkout">
+<!--            @{'/customer/addtocart/{movieId}'(movieId=${movie.getMovieId})}-->
+                    <a class="btn btn-outline-primary btn-lg" href="/customer/checkout/1">
                         <i class="fa-solid fa-book"></i> Checkout
                     </a>
                 </span>
@@ -21,39 +22,28 @@
             <thead>
             <tr>
                 <th scope="col">#</th>
-                <th scope="col">Movie</th>
+                <th scope="col">Movie Name</th>
                 <th scope="col">Genre</th>
                 <th scope="col">Released Date</th>
-                <th scope="col">Price</th>
+                <th scope="col">Rental Price</th>
+<!--                <th scope="col">&nbsp;</th>-->
 
             </tr>
             </thead>
             <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Avengers</td>
-                    <td>Sci-fi</td>
-                    <td>11-11-1111</td>
-                    <td>$10.0</td>
-                </tr>
+            <tr th:each="movie,counter  : ${movies}">
+                <th scope="row" th:text="${counter.count}+${'.'}"></th>
+                <td th:text="${movie.getMovieName()}"></td>
+                <td th:text="${movie.getGenre()}"></td>
+                <td th:text="${movie.getReleasedDate()}"></td>
+                <td th:text="${movie.getRentalPrice()}"></td>
+                <!--<td>
+                    <a th:href="@{'/admin/movies/delete/{movieId}'(movieId=${movie.getMovieId})}">
+                        <i class="fa-solid fa-delete-left"></i> Remove
+                    </a>
+                </td>-->
 
-                <!--<tr th:each="customer,iterStat : ${customers}">
-                    <th scope="row" th:text="${iterStat.count}+${'.'}"></th>
-                    <td th:text="${customer.customerId}"></td>
-                    <td th:text="${customer.name}"></td>
-                    <td th:text="${customer.address}"></td>
-                    <td th:text="${customer.phoneNo}"></td>
-                    <td>
-                        <a th:href="@{'/admin/edit/{adminId}'(customerId=${customer.customerId})}">
-                            <i class="fa-regular fa-pen-to-square"></i> Edit
-                        </a>
-                    </td>
-                    <td>
-                        <a th:href="@{'/admin/delete/{adminId}'(customerId=${customer.customerId})}">
-                            <i class="fa-solid fa-delete-left"></i> Delete
-                        </a>
-                    </td>
-                </tr>-->
+            </tr>
             </tbody>
         </table>
     </div>
