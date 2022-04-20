@@ -1,6 +1,7 @@
 package cs425.project.moviemail.model;
 
 import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -27,6 +28,7 @@ public class Movie {
     private int genre; //Genre.Action.value;
 
     @Column(name="released_date")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate releasedDate;
 
     @Column(name="price", nullable = false)
