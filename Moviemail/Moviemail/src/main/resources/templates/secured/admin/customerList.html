@@ -31,29 +31,27 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="customer,iterStat : ${customers}">
-                <th scope="row" th:text="${iterStat.count}+${'.'}"></th>
-                <td th:text="${customer.customerId}"></td>
-                <td th:text="${customer.name}"></td>
-                <td th:text="${customer.address}"></td>
-                <td th:text="${customer.phoneNo}"></td>
-                <td>
-                    <a th:href="@{'/customer/edit/{customerId}'(customerId=${customer.customerId})}">
-                        <i class="fa-regular fa-pen-to-square"></i> Edit
-                    </a>
-                </td>
-                <td>
-                    <a th:href="@{'/customer/delete/{customerId}'(customerId=${customer.customerId})}">
-                        <i class="fa-solid fa-delete-left"></i> Delete
-                    </a>
-                    <!--                        <a data-toggle="modal" data-target="#confirmDeleteBookModal" th:href="@{'/elibrary/book/delete/' + ${book.bookId}}">Delete</a>-->
-                    <!--                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">-->
-                    <!--                            Launch demo modal-->
-                    <!--                        </button>-->
-                </td>
-
-
-            </tr>
+                <tr th:each="customer,iterStat : ${customers}">
+                    <th scope="row" th:text="${iterStat.count}+${'.'}"></th>
+                    <td th:text="${customer.customerId}"></td>
+                    <td th:text="${customer.name}"></td>
+                    <td th:text="${customer.address}"></td>
+                    <td th:text="${customer.phoneNo}"></td>
+                    <td>
+                        <a th:href="@{'/admin/edit/{adminId}'(customerId=${customer.customerId})}">
+                            <i class="fa-regular fa-pen-to-square"></i> Edit
+                        </a>
+                    </td>
+                    <td>
+                        <a th:href="@{'/admin/delete/{adminId}'(customerId=${customer.customerId})}">
+                            <i class="fa-solid fa-delete-left"></i> Delete
+                        </a>
+                        <!--                        <a data-toggle="modal" data-target="#confirmDeleteBookModal" th:href="@{'/elibrary/book/delete/' + ${book.bookId}}">Delete</a>-->
+                        <!--                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">-->
+                        <!--                            Launch demo modal-->
+                        <!--                        </button>-->
+                    </td>
+                </tr>
             </tbody>
         </table>
     </div>

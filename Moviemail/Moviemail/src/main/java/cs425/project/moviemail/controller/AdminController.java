@@ -98,8 +98,6 @@ public class AdminController {
         return "redirect:/admin/movies";
     }
 
-
-
     //added for Edit movie
     @GetMapping(value = {"/movies/edit/{movieId}"})
     public String editMovie(@PathVariable Long movieId, Model model) {
@@ -129,16 +127,5 @@ public class AdminController {
         Movie movie = movieService.getMovieById(movieId);
         movieService.deleteMovieById(movieId);
         return "redirect:/admin/movies";
-
     }
-
-//    //added by SY
-//    @GetMapping(value = {"/movies"})
-//    public ModelAndView getAllMovies() {
-//        var modelAndView = new ModelAndView();
-//        modelAndView.addObject("movies", movieService.getAllMovie());
-//        modelAndView.setViewName("movie");
-//        return modelAndView;
-//
-//    }
 }
