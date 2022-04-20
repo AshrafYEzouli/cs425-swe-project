@@ -74,7 +74,6 @@ public class AdminController {
         return "redirect:/admin/list";
     }
 
-
     //added by SY
     @GetMapping(value = {"/movies"})
     public ModelAndView getAllMovies() {
