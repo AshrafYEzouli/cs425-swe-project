@@ -71,6 +71,4 @@ public class AdminController {
         adminService.deleteAdminById(adminId);
         return "redirect:/admin/list";
     }
-
-
 }
