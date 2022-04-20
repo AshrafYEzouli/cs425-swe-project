@@ -1,6 +1,10 @@
 package cs425.project.moviemail.controller;
 
+import cs425.project.moviemail.model.Cart;
+import cs425.project.moviemail.model.Customer;
 import cs425.project.moviemail.model.Record;
+import cs425.project.moviemail.service.CartService;
+import cs425.project.moviemail.service.MovieService;
 import cs425.project.moviemail.service.RecordService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -29,6 +33,12 @@ public class CustomerController {
     @Autowired
     private RecordService recordService;
 
+    @Autowired
+    private CartService cartService;
+
+    @Autowired
+    private MovieService movieService;
+
     @GetMapping(value = {"/cart"})
     public ModelAndView goToCart() {
         var modelAndView = new ModelAndView();
@@ -40,6 +50,22 @@ public class CustomerController {
     public void checkout(@Valid @ModelAttribute("record") Record record, BindingResult bindingResult, Model model) {
         recordService.checkOut(record);
         System.out.println("save record!");
+    }
+
+    @GetMapping(value = {"/addtocart/{movieId}"})
+    public String addToCart(@PathVariable Long movieId, Model model) {
+        var movie = movieService.getMovieById(movieId);
+        if(movie != null) {
+            Customer customer = new Customer();
+            customer.setCustomerId(1L);
+
+            Cart cart = new Cart();
+            cart.setMovie(movie);
+            cart.setCustomer(customer);
+
+            cartService.addToCart(cart);
+        }
+        return "redirect:/admin/movies";
     }
 
     public List<Record> getAllRecords() {

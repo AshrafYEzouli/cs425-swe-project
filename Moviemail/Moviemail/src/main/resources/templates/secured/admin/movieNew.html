@@ -22,7 +22,7 @@
                             <div class="form-group">
                                 <label for="movieName">*Movie Name:</label>
                                 <input id="movieName" name="movieName" type="text" class="form-control"
-                                       th:value="${movie.getMovieName()}" autofocus>
+                                       th:value="${movie.movieName}" autofocus>
                             </div>
                         </div>
                     </div>
@@ -31,7 +31,7 @@
                             <div class="form-group">
                                 <label for="genre">*Genre</label>
                                 <input id="genre" name="genre" type="text" class="form-control"
-                                       th:value="${movie.getGenre()}" >
+                                       th:value="${movie.genre}" >
                             </div>
                         </div>
                     </div>
@@ -40,7 +40,7 @@
                             <div class="form-group">
                                 <label for="releasedDate">*Release Date</label>
                                 <input id="releasedDate" name="releasedDate" type="text" class="form-control"
-                                       th:value="${movie.getReleasedDate()}" >
+                                       th:value="${movie.releasedDate}" >
                             </div>
                         </div>
                     </div>
@@ -49,7 +49,7 @@
                             <div class="form-group">
                                 <label for="rentalPrice">*Rental Price</label>
                                 <input id="rentalPrice" name="rentalPrice" type="text" class="form-control"
-                                       th:value="${movie.getRentalPrice()}" >
+                                       th:value="${movie.rentalPrice}" >
                             </div>
                         </div>
                     </div>

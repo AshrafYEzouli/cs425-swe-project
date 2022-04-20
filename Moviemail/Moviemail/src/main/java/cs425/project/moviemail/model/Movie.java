@@ -25,7 +25,7 @@ public class Movie {
     private String movieName;
 
     @Column(name="genre", nullable = false)
-    private int genre; //Genre.Action.value;
+    private String genre;
 
     @Column(name="released_date")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
@@ -36,52 +36,4 @@ public class Movie {
 
     @ManyToMany(mappedBy="movies")
     private List<Record> records = new ArrayList<>();
-
-    public Long getMovieId() {
-        return movieId;
-    }
-
-    public void setMovieId(Long movieId) {
-        this.movieId = movieId;
-    }
-
-    public String getMovieName() {
-        return movieName;
-    }
-
-    public void setMovieName(String movieName) {
-        this.movieName = movieName;
-    }
-
-    public int getGenre() {
-        return genre;
-    }
-
-    public void setGenre(int genre) {
-        this.genre = genre;
-    }
-
-    public LocalDate getReleasedDate() {
-        return releasedDate;
-    }
-
-    public void setReleasedDate(LocalDate releasedDate) {
-        this.releasedDate = releasedDate;
-    }
-
-    public double getRentalPrice() {
-        return rentalPrice;
-    }
-
-    public void setRentalPrice(double rentalPrice) {
-        this.rentalPrice = rentalPrice;
-    }
-
-    public List<Record> getRecords() {
-        return records;
-    }
-
-    public void setRecords(List<Record> records) {
-        this.records = records;
-    }
 }
