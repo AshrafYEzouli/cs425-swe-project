@@ -15,6 +15,7 @@ public class MovieServiceImpl implements MovieService {
     @Autowired
     private MovieRepository movieRepository;
 
+    @Override
     public List<Movie> getAllMovie() { return movieRepository.findAll();}
 
     @Override
@@ -23,12 +24,13 @@ public class MovieServiceImpl implements MovieService {
     }
 
     @Override
-    public Movie getBookById(Long movieId) {
-        return null;
+    public Movie getMovieById(Long movieId) {
+        return movieRepository.findById(movieId).orElse(null);
     }
 
     @Override
-    public Movie updateMovieById(Long movieId) {
-        return null;
+    public void deleteMovieById(Long movieId) {
+        movieRepository.deleteById(movieId);
+
     }
 }

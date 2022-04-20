@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 public interface MovieService {
     public abstract Iterable<Movie> getAllMovie();
     public abstract Movie addNewMovie(Movie movie);
-    public abstract Movie getMovieById(Long movieId);
-    Movie updateMovieById(Long movieId);
+    public abstract Movie getMovieById(Long movie);
+    public abstract void deleteMovieById(Long movie);
 
 }

@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-import cs425.project.moviemail.model.Admin;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 
@@ -41,7 +40,7 @@ public class AdminController {
     }
     @PostMapping(value = {"/new"})
     public String registerNewAdmin(@Valid @ModelAttribute("admin") Admin admin,
-                                     BindingResult bindingResult, Model model) {
+                                   BindingResult bindingResult, Model model) {
 
         adminService.save(admin);
         return "redirect:/admin/list";
@@ -59,7 +58,7 @@ public class AdminController {
 
     @PostMapping(value = {"/update"})
     public String updateAdmin(@Valid @ModelAttribute("admin") Admin admin,
-                                  BindingResult bindingResult, Model model) {
+                              BindingResult bindingResult, Model model) {
         if(bindingResult.hasErrors()) {
             model.addAttribute("admin", admin);
             model.addAttribute("errors", bindingResult.getAllErrors());
@@ -115,7 +114,7 @@ public class AdminController {
 
     @PostMapping(value = {"/movies/update"})
     public String updateMovie(@Valid @ModelAttribute("movie") Movie movie,
-                                  BindingResult bindingResult, Model model) {
+                              BindingResult bindingResult, Model model) {
         if(bindingResult.hasErrors()) {
             model.addAttribute("movie", movie);
             model.addAttribute("errors", bindingResult.getAllErrors());
