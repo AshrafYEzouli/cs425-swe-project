@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org">
 <head th:replace="public/fragments/head-elements :: headElements"></head>
-<title>MovieMail - Admins</title>
+<title>MovieMail - Customers</title>
 </head>
 <body>
 <div th:replace="public/fragments/header :: header"></div>
 <div id="mainContainer" class="container">
     <div style="width: 100%;">
-        <h3 style="display: inline;">List of all Admins</h3>
+        <h3 style="display: inline;">List of all Customers</h3>
         <span style="float: right;">
-                    <a class="btn btn-outline-primary btn-lg" href="/customer/newCustomer">
-                        <i class="fa-solid fa-book"></i> Add an Admin
+                    <a class="btn btn-outline-primary btn-lg" href="/customer/new">
+                        <i class="fa-solid fa-book"></i> Add a customer
                     </a>
                 </span>
     </div>
@@ -51,8 +51,6 @@
                         <!--                            Launch demo modal-->
                         <!--                        </button>-->
                     </td>
-
-
                 </tr>
             </tbody>
         </table>
