@@ -1,9 +1,6 @@
 package cs425.project.moviemail.controller;
 
-<<<<<<< Updated upstream
-=======
 import cs425.project.moviemail.model.Admin;
->>>>>>> Stashed changes
 import cs425.project.moviemail.model.Movie;
 import cs425.project.moviemail.service.AdminService;
 import cs425.project.moviemail.service.MovieService;
@@ -23,19 +20,10 @@ import java.util.List;
 public class AdminController {
 
     @Autowired
-<<<<<<< Updated upstream
-=======
-    private MovieService movieService;
-
->>>>>>> Stashed changes
     private AdminService adminService;
 
     @Autowired
     private MovieService movieService;
-
-    public AdminController(AdminService adminService) {
-        this.adminService = adminService;
-    }
 
     @GetMapping(value = {"/list"})
     public ModelAndView listAdmins() {
@@ -87,19 +75,7 @@ public class AdminController {
         return "redirect:/admin/list";
     }
 
-<<<<<<< Updated upstream
-    @GetMapping(value = "/addmovies")
-    public ModelAndView getMovieForm() {
-        var modelAndView = new ModelAndView();
-        modelAndView.addObject("movie",new Movie());
-        modelAndView.setViewName("movieadd");
-        return modelAndView;
-    }
 
-    @PostMapping(value = "/addmovies")
-    public String addMovie(@ModelAttribute("movie") Movie movie) {
-        return "redirect:/movies";
-=======
     //added by SY
     @GetMapping(value = {"/movies"})
     public ModelAndView getAllMovies() {
@@ -149,25 +125,22 @@ public class AdminController {
         return "redirect:/admin/movies";
     }
 
-
-
-
     //added for delete movie
     @GetMapping("/movies/delete/{movieId}")
     public String deleteMovie(@PathVariable Long movieId) {
         Movie movie = movieService.getMovieById(movieId);
         movieService.deleteMovieById(movieId);
         return "redirect:/admin/movies";
->>>>>>> Stashed changes
-    }
-
-    //added by SY
-    @GetMapping(value = {"/movies"})
-    public ModelAndView getAllMovies() {
-        var modelAndView = new ModelAndView();
-        modelAndView.addObject("movies", movieService.getAllMovie());
-        modelAndView.setViewName("movie");
-        return modelAndView;
 
     }
+
+//    //added by SY
+//    @GetMapping(value = {"/movies"})
+//    public ModelAndView getAllMovies() {
+//        var modelAndView = new ModelAndView();
+//        modelAndView.addObject("movies", movieService.getAllMovie());
+//        modelAndView.setViewName("movie");
+//        return modelAndView;
+//
+//    }
 }

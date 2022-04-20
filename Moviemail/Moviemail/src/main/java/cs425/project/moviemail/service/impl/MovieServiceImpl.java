@@ -21,4 +21,14 @@ public class MovieServiceImpl implements MovieService {
     public Movie addNewMovie(Movie movie) {
         return movieRepository.save(movie);
     }
+
+    @Override
+    public Movie getBookById(Long movieId) {
+        return null;
+    }
+
+    @Override
+    public Movie updateMovieById(Long movieId) {
+        return null;
+    }
 }
