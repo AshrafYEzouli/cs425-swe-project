@@ -22,10 +22,19 @@ import javax.validation.Valid;
 @Controller
 @RequestMapping(value = {"/customer"})
 public class CustomerController {
+
+    @Autowired
     private CustomerService customerService;
 
     @Autowired
     private RecordService recordService;
+
+    @GetMapping(value = {"/cart"})
+    public ModelAndView goToCart() {
+        var modelAndView = new ModelAndView();
+        modelAndView.setViewName("secured/admin/cart");
+        return modelAndView;
+    }
 
     @PostMapping(value = {"/checkout"})
     public void checkout(@Valid @ModelAttribute("record") Record record, BindingResult bindingResult, Model model) {
@@ -39,10 +48,6 @@ public class CustomerController {
 
     public List<Record> getAllRecordsByCustomerId(@PathVariable Long customerId, Model model) {
         return recordService.getAllRecordsByCustomerId(customerId);
-    }
-
-    public CustomerController(CustomerService customerService) {
-        this.customerService = customerService;
     }
 
     @GetMapping(value = {"/listCustomer"})

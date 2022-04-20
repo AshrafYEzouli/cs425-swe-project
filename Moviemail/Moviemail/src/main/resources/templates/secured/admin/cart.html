@@ -7,10 +7,10 @@
 <div th:replace="public/fragments/header :: header"></div>
 <div id="mainContainer" class="container">
     <div style="width: 100%;">
-        <h3 style="display: inline;">List of all Admins</h3>
+        <h3 style="display: inline;">Shopping cart</h3>
         <span style="float: right;">
-                    <a class="btn btn-outline-primary btn-lg" href="/customer/newCustomer">
-                        <i class="fa-solid fa-book"></i> Add an Admin
+                    <a class="btn btn-outline-primary btn-lg" href="/customer/checkout">
+                        <i class="fa-solid fa-book"></i> Checkout
                     </a>
                 </span>
     </div>
@@ -21,17 +21,23 @@
             <thead>
             <tr>
                 <th scope="col">#</th>
-                <th scope="col">CustomerId</th>
-                <th scope="col">Name</th>
-                <th scope="col">Address</th>
-                <th scope="col">Phone number</th>
-                <th scope="col">&nbsp;</th>
-                <th scope="col">&nbsp;</th>
+                <th scope="col">Movie</th>
+                <th scope="col">Genre</th>
+                <th scope="col">Released Date</th>
+                <th scope="col">Price</th>
 
             </tr>
             </thead>
             <tbody>
-                <tr th:each="customer,iterStat : ${customers}">
+                <tr>
+                    <th scope="row">1</th>
+                    <td>Avengers</td>
+                    <td>Sci-fi</td>
+                    <td>11-11-1111</td>
+                    <td>$10.0</td>
+                </tr>
+
+                <!--<tr th:each="customer,iterStat : ${customers}">
                     <th scope="row" th:text="${iterStat.count}+${'.'}"></th>
                     <td th:text="${customer.customerId}"></td>
                     <td th:text="${customer.name}"></td>
@@ -46,14 +52,8 @@
                         <a th:href="@{'/admin/delete/{adminId}'(customerId=${customer.customerId})}">
                             <i class="fa-solid fa-delete-left"></i> Delete
                         </a>
-                        <!--                        <a data-toggle="modal" data-target="#confirmDeleteBookModal" th:href="@{'/elibrary/book/delete/' + ${book.bookId}}">Delete</a>-->
-                        <!--                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">-->
-                        <!--                            Launch demo modal-->
-                        <!--                        </button>-->
                     </td>
-
-
-                </tr>
+                </tr>-->
             </tbody>
         </table>
     </div>
