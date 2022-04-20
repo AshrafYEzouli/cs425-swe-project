@@ -1,20 +1,12 @@
 package cs425.project.moviemail.service;
 
-import cs425.project.moviemail.repository.CustomerRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import cs425.project.moviemail.model.Customer;
 
-@Service
-public class CustomerService {
+import java.util.List;
 
-    @Autowired
-    private CustomerRepository customerRepository;
-
-    public void checkout() {
-
-    }
-
-    public void getAllRecords() {
-
-    }
+public interface CustomerService {
+    public abstract List<Customer> getAllCustomer();
+    Customer save(Customer customer);
+    public abstract Customer getCustomerById(Long customerId);
+    public abstract void deleteCustomerById(Long customerId);
 }
