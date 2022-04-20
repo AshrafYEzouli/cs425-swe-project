@@ -18,4 +18,9 @@ public class HomepageController {
         return "public/home/about";
     }
 
+    @GetMapping(value = {"/public/login"})
+    public String displayLoginPage() {
+        return "public/login/login";
+    }
+
 }
