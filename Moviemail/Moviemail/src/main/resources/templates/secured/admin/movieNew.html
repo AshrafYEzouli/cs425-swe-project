@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head th:replace="public/fragments/head-elements :: headElements"></head>
+<title>MovieMail - AdminForm</title>
+</head>
+<body>
+<div th:replace="public/fragments/header :: header"></div>
+<div id="mainContainer" class="container">
+    <h3>New Movie Form</h3>
+    <hr/>
+    <div style="font-size: 1em">
+        <div><span><b>Note:</b> Form fields marked with asterisk (*) are required.</span></div>
+        <!-- new publisher form-->
+        <form id="movieForm" method="post" action="/admin/movies/addmovies" th:object="${movie}">
+            <fieldset>
+
+                <div class="container" style="margin-top: 1em;">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <input type="hidden" name="movieId" th:value="${movie.getMovieId()}" />
+
+                            <div class="form-group">
+                                <label for="movieName">*Movie Name:</label>
+                                <input id="movieName" name="movieName" type="text" class="form-control"
+                                       th:value="${movie.getMovieName()}" autofocus>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="genre">*Genre</label>
+                                <input id="genre" name="genre" type="text" class="form-control"
+                                       th:value="${movie.getGenre()}" >
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="releasedDate">*Release Date</label>
+                                <input id="releasedDate" name="releasedDate" type="text" class="form-control"
+                                       th:value="${movie.getReleasedDate()}" >
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="rentalPrice">*Rental Price</label>
+                                <input id="rentalPrice" name="rentalPrice" type="text" class="form-control"
+                                       th:value="${movie.getRentalPrice()}" >
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="padding-top: .75em;">
+                        <div>
+                            <div style="float:right;">
+                                <button id="btnReset" type="reset" class="btn btn-outline-info" style="margin-right: 2em;">Reset</button>
+                                <a href="/admin/movies" class="btn btn-outline-warning" style="margin-right: 2em;">Cancel</a>
+                                <button id="btnSubmit" type="submit" class="btn btn-outline-primary">Register Movie</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</div>
+
+<div th:replace="public/fragments/footer :: footer"></div>
+</body>
+</html>

@@ -1,5 +1,14 @@
 package cs425.project.moviemail.controller;
 
+import cs425.project.moviemail.model.Record;
+import cs425.project.moviemail.service.RecordService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import cs425.project.moviemail.model.Admin;
 import cs425.project.moviemail.model.Customer;
@@ -8,15 +17,36 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
 import java.util.List;
 
+import javax.validation.Valid;
+
 @Controller
 @RequestMapping(value = {"/customer"})
 public class CustomerController {
     private final CustomerService customerService;
+
+    @Autowired
+    private RecordService recordService;
+
+    @PostMapping(value = {"/checkout"})
+    public void checkout(@Valid @ModelAttribute("record") Record record, BindingResult bindingResult, Model model) {
+        recordService.checkOut(record);
+        System.out.println("save record!");
+    }
+
+    public List<Record> getAllRecords() {
+        return recordService.getAllRecords();
+    }
+
+    public List<Record> getAllRecordsByCustomerId(@PathVariable Long customerId, Model model) {
+        return recordService.getAllRecordsByCustomerId(customerId);
+    }
 
     public CustomerController(CustomerService customerService) {
         this.customerService = customerService;
@@ -31,7 +61,7 @@ public class CustomerController {
         modelAndView.setViewName("secured/admin/customerList");
         return modelAndView;
     }
-
+  
     @GetMapping(value = {"/new"})
     public String displayNewCustomerForm(Model model) {
         model.addAttribute("customer", new Customer(null,null,null,null));
