@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<html lang="en" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head th:replace="public/fragments/head-elements :: headElements"></head>
 <title>MovieMail - AdminForm</title>
 </head>
@@ -10,7 +11,7 @@
         <hr/>
         <div style="font-size: 1em">
             <div><span><b>Note:</b> Form fields marked with asterisk (*) are required.</span></div>
-            <!-- new publisher form-->
+            <!-- new admin form-->
             <form id="adminForm" method="post" action="/admin/new" th:object="${admin}">
                 <fieldset>
 
